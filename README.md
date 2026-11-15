@@ -14,7 +14,7 @@ Built for in-house GRC leads, security and compliance managers, vCISOs and consu
 
 | Command | What it does | When |
 |---|---|---|
-| `/start` | Onboarding interview: 2 questions about you plus 12 program discovery questions in three resumable rounds. Builds context, registers, voice, eval questions, and your personalized `CLAUDE.md`. `/start deep-dive <topic>` goes deeper later (workforce, change-and-ai, evidence-automation, metrics, continuity, questionnaires). | Day 1, then after editing `grc-intake.md` |
+| `/start` | Onboarding interview: up to 5 questions about you and your starting point (existing program or from scratch, current tools such as Vanta, Drata, AWS, or Google Sheets, and your system description) plus 12 program discovery questions in three resumable rounds. Builds context, registers, voice, eval questions, and your personalized `CLAUDE.md`. `/start deep-dive <topic>` goes deeper later (workforce, change-and-ai, evidence-automation, metrics, continuity, questionnaires). | Day 1, then after editing `grc-intake.md` |
 | `/audit` | Evidence-based reliability score (0 to 100) across Context, Connections, Capabilities, and Cadence, plus an evidence-integrity gate (no fabricated quotes) and an unscored program health snapshot (overdue actions, expired exceptions, stale evidence). Saves a dated report and tracks findings across runs. Read-only. | Day 7, after each fix, then monthly |
 | `/feedback` | `/feedback <correction>` records the lesson in the right file so it sticks. `/feedback` alone runs the weekly improvement loop (Mindset, Method, Machine) to ship **one** improvement. | Whenever you correct it, and weekly |
 

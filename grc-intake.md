@@ -2,7 +2,7 @@
 
 This file is the source of truth for `/start`. You can fill it in three ways: type answers here, dictate them, or run `/start` for a guided interview that saves each answer as you go. However you do it, `/start` reads this file to build your context, program registers, and operating manual.
 
-**Format:** 2 questions about you, then 12 program discovery questions in three rounds of about 10 minutes each. You can stop between rounds and pick up later. Run `/start` again whenever you edit this file.
+**Format:** up to 5 questions about you and your starting point, then 12 program discovery questions in three rounds of about 10 minutes each. You can stop between rounds and pick up later. Run `/start` again whenever you edit this file.
 
 **For every program answer, record three things:**
 - **Owner:** the person accountable for this area
@@ -15,7 +15,7 @@ This file is the source of truth for `/start`. You can fill it in three ways: ty
 
 ---
 
-## Round 0 - You
+## Round 0 - You and your starting point
 
 ### S1 - Who are you, and how do you work in GRC?
 
@@ -35,6 +35,31 @@ For example an executive update, a policy excerpt, an audit response, or a secur
 
 ```
 [Sample 2 - paste raw]
+```
+
+### S3 - Is this an existing GRC program, or are you starting GRC from scratch?
+
+Choose one: **existing** (policies, controls, or an audit or certification already in place), **partial** (some pieces exist but no running program), or **from scratch**. Briefly say what already exists. This shapes the rest of the interview: an existing program is documented from its evidence, and a new one is designed from your answers.
+
+```
+Answer:
+What already exists:
+```
+
+### S4 - Which GRC and evidence tools do you already use?
+
+List the tools you have, even if they are not yet connected to this workspace. Examples: GRC or compliance automation platforms (Vanta, Drata, Secureframe, OneTrust, ServiceNow GRC, AuditBoard), cloud providers (AWS, Azure, Google Cloud), identity (Okta, Entra ID, Google Workspace), ticketing (Jira, ServiceNow), code (GitHub, GitLab), and spreadsheets or documents (Google Sheets, Excel, SharePoint, Confluence). For each, say what it holds (controls, evidence, risks, vendors, policies). **Never paste credentials or API keys.**
+
+```
+Tool | What it holds | Who administers it
+```
+
+### S5 - (Existing or partial programs only) Do you have a system description?
+
+A system description explains the in-scope system: services, infrastructure, software, people, data, processes, and boundaries. It is often Section III of a SOC 2 report or part of an ISO 27001 scope statement. If you have one, put a copy in `sources/` and write `See sources/<file>.md`. `/start` will read it to pre-fill scope, crown jewels, and data flows. Skip this question if you are starting from scratch.
+
+```
+Answer:
 ```
 
 ---
@@ -137,7 +162,7 @@ Decision / action:
 
 ### G9 - Which policies and controls already work in practice, what evidence shows it, and where does that evidence live?
 
-Name the systems that hold evidence (identity provider, cloud console, MDM, HR system, ticketing, code repository, GRC platform, shared drive) and which evidence collection you would most like to automate.
+Name the systems that hold evidence (build on the tools you listed in S4: identity provider, cloud console, MDM, HR system, ticketing, code repository, GRC platform, shared drive) and which evidence collection you would most like to automate.
 
 ```
 Answer:

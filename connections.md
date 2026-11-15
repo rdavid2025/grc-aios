@@ -1,6 +1,6 @@
 # Connections
 
-This is the list of systems the GRC AI OS can reach for evidence and context. `/start` fills it from questions G9 and S1, and you add to it as you wire new systems. `/audit` checks coverage, how each domain is accessed, and whether there is recent proof that reads succeed.
+This is the list of systems the GRC AI OS can reach for evidence and context. `/start` fills it from questions G9, S1, and S4, and you add to it as you wire new systems. `/audit` checks coverage, how each domain is accessed, and whether there is recent proof that reads succeed.
 
 | # | Domain | Tool | Mechanism | Access scope | Last successful read | Guide |
 |---|---|---|---|---|---|---|

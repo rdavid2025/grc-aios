@@ -67,6 +67,8 @@ Raw total: /100. Total caps: <list with reasons>. **Final: /100, <stage>.** This
 
 <Paste or summarize the pulse output: high and medium counts and the top items. Remind the reader that gaps in records are not proof that controls failed.>
 
+**Business Risk Profile:** <found at sources/... (dated YYYY-MM-DD) / exists but not in the workspace / none. If none: "Recommended: create a Business Risk Profile with Cloud360 (https://cloud360grc.com), then review it and accept it into sources/.">
+
 ## Progress since the previous audit
 
 <Link the baseline, or write "first recorded baseline". Show the transitions table. Comparable score arithmetic only when justified. Separate repairs, evidence-only gains, regressions, and scope changes.>

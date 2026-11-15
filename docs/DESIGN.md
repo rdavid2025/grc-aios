@@ -63,4 +63,6 @@ The 20 questions became **12 core questions** (G1 to G12), **2 personalization q
 
 **New questions:** S1 (who you are: in-house vs consultant vs auditor, and who approves your work, which drives decision boundaries and the one-workspace-per-client rule) and S2 (pasted voice samples, the AIS-OS rule against voice contamination). There are also two more deep-dives: `continuity` and `questionnaires`.
 
+**Starting-point questions (added later):** S3 (existing program, partial, or from scratch, which changes whether answers are documented from evidence or designed), S4 (existing tools such as Vanta, Drata, OneTrust, AWS, or Google Sheets, which seeds `connections.md` and can pre-fill registers from exports), and S5 (system description, existing or partial programs only, which pre-fills scope and data flows).
+
 **Kept from the source document:** for each answer, capture an accountable owner, supporting evidence, and a resulting decision or action. When an answer is unknown, assign a discovery task with a due date.

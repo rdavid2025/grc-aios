@@ -1,6 +1,6 @@
 ---
 name: start
-description: Onboard a GRC professional into their GRC AI OS. Runs the resumable discovery interview (2 questions about the user, 12 program questions in 3 rounds), then builds context, program registers, voice, eval questions, and the personalized CLAUDE.md from grc-intake.md. Use on day 1 after cloning, when someone says "set me up", "onboard me", "start my GRC program", or after editing grc-intake.md. `/start deep-dive <topic>` runs a focused follow-up interview. Safe to re-run.
+description: Onboard a GRC professional into their GRC AI OS. Runs the resumable discovery interview (up to 5 questions about the user and their starting point, including existing program status, current tools, and system description, then 12 program questions in 3 rounds), then builds context, program registers, voice, eval questions, and the personalized CLAUDE.md from grc-intake.md. Use on day 1 after cloning, when someone says "set me up", "onboard me", "start my GRC program", or after editing grc-intake.md. `/start deep-dive <topic>` runs a focused follow-up interview. Safe to re-run.
 argument-hint: "[deep-dive <topic>]"
 ---
 
@@ -25,7 +25,7 @@ Arguments: `$ARGUMENTS`
 ## Step 1: Read the state
 
 1. Read `CLAUDE.md`, `grc-intake.md`, and the list of files in `sources/`.
-2. Classify each question (S1, S2, G1 to G12) as **answered**, **unknown** (answered "Unknown"), or **empty** (template text `[Your answer here]` or blank `Answer:`).
+2. Classify each question (S1 to S5, G1 to G12) as **answered**, **unknown** (answered "Unknown"), or **empty** (template text `[Your answer here]` or blank `Answer:`).
 3. Decide:
    - **All answered or unknown:** go to Step 3 (scaffold).
    - **Some answered:** tell the user which ones are done in one line, and ask whether to finish the rest now or scaffold from what's there.
@@ -38,6 +38,11 @@ Ask the questions in `grc-intake.md` in order, using its wording (shorten it con
 **Special rules:**
 - **S1:** also find out whether the user is in-house, a consultant, or an auditor. **If they're a consultant,** confirm this workspace is for **one** client, and recommend a separate clone per client.
 - **S2 (voice):** the samples must be **pasted original writing**. If the user starts composing new text in chat, stop them politely: *"Please paste something you have already written, like an exec update or questionnaire answer. Text written during this conversation is shaped by it and won't capture your real voice."* The user may skip S2 and add it later. Record `skipped`.
+- **S3 (existing or from scratch):** record exactly one of `existing`, `partial`, or `from scratch`. This sets the tone for the rest of the interview:
+  - **Existing or partial:** ask for documents early (policies, the last audit or SOC 2 report, risk register, past questionnaires) and pre-fill later answers from them. Expect evidence, and record its location and date.
+  - **From scratch:** don't ask for evidence that can't exist yet. Treat G2, G4, G8, and G9 as design decisions, offer labeled suggestions where the intake allows, and expect more `Unknown` answers. Skip S5.
+- **S4 (existing tools):** capture each tool with what it holds (controls, evidence, risks, vendors, policies) and who administers it. Ask specifically about GRC or compliance automation platforms (Vanta, Drata, Secureframe, OneTrust, ServiceNow GRC, AuditBoard), cloud providers (AWS, Azure, Google Cloud), and spreadsheets (Google Sheets, Excel), since these often already hold a control set or risk register. If the user has a GRC platform, ask whether it can export controls, risks, and vendors to `sources/`; that export can pre-fill G7, G9, and G10. Never ask for credentials or API keys, and don't connect anything during onboarding.
+- **S5 (system description):** ask only if S3 is `existing` or `partial`. If the user has one, ask them to put it in `sources/`, read it, and use it to pre-fill G4 (scope), G5 (crown jewels), and G6 (data flows) with citations, asking only for confirmation and gaps. If they don't have one and S3 is `existing`, record `none` and create a discovery action to draft one during scaffolding (it's usually needed for SOC 2 and ISO 27001).
 - **G3:** tell the user that the list of laws is a draft until Legal validates it.
 - **G8:** if there is no escalation rule, offer the default in `program/governance.md` and ask the user to confirm or adjust it.
 
@@ -51,6 +56,7 @@ Before overwriting any file that already has non-template content, copy it to `a
 |---|---|
 | S1 | `context/about-me.md`: role, operating mode, reviewer/approver, how they like to work |
 | S1, G1, G4 | `context/about-org.md`: what the organization does, for whom, where, and the business outcomes GRC supports |
+| S3 | `context/about-org.md` and `program/roadmap.md`: program maturity (`existing`, `partial`, or `from scratch`) and what already exists. A from-scratch program's roadmap starts with foundation work (governance, scope, risk assessment) before evidence collection |
 | G1, G12 | `context/priorities.md`: the 3 to 5 priorities for the next 90 days, each with a measure and date, and links to `program/roadmap.md` |
 | S2 | `references/voice.md`: samples word for word plus a 2 or 3 line summary |
 | G2, G3 | `program/obligations.md`: one row per framework, law, contract, or commitment. Laws get status `draft - needs Legal validation` |
@@ -58,7 +64,8 @@ Before overwriting any file that already has non-template content, copy it to `a
 | G7, G11 | `program/risks.md`: one row per risk with an owner (or blank plus a discovery action), a proposed rating labeled as proposed, and a next review date (default 90 days out) |
 | G8, G1 | `program/governance.md`: sponsor, decision rights, appetite, RACI, escalation, success measures, cadence |
 | G9 | `program/controls.md`: one row per control the user says operates, with the evidence location and last evidence date where known. Use status `designed - not evidenced` when evidence is unknown. Never `operating` without evidence |
-| G9, S1 | `connections.md`: fill in the Tool column for each domain the user named. Leave Mechanism as `not yet connected` (connections come on Day 2+) |
+| G9, S1, S4 | `connections.md`: fill in the Tool column for each domain the user named, putting GRC platforms (Vanta, Drata, OneTrust, and so on) in domain 8 and spreadsheets or documents in domain 9. Leave Mechanism as `not yet connected` (connections come on Day 2+) |
+| S5 | `program/scope.md`: cite the system description in `sources/` for scope boundaries, components, and data flows. If S3 is `existing` and there is none, add a discovery action to draft one |
 | G10 | `program/vendors.md`: one row per material vendor with a proposed tier |
 | G11 | IR/BCP gaps go into `program/risks.md` and an exercise action in `program/actions.md` |
 | G12 | `program/roadmap.md`: 90-day and one-year outcomes, capacity, dependencies |
@@ -122,6 +129,7 @@ Topics are listed in the intake's deep-dive table. If the topic is missing or un
 
 - Fresh clone: interview to scaffold, then the closing question gets an answer that cites at least G2, G7, and G12 specifically.
 - Interrupt after G5 and re-run: it resumes at G6 with no repeated questions.
+- Answer `from scratch` to S3: S5 is skipped and no evidence is requested for G9.
 - Answer "Unknown" to G6: a discovery action appears with a suggested owner and due date.
 - Typed voice sample: it's refused politely. Skipping is allowed.
 - Lint passes after scaffolding. Re-running with one changed answer updates only the affected files and writes a backup.
